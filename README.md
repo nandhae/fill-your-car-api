@@ -1,24 +1,28 @@
-# README
+<b>Setup instructions</b>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prerequisites:
 
-Things you may want to cover:
+    - Rails 5
+    - psql
 
-* Ruby version
+--After copying .envrc file into the repo install direnv
+```sh
+$ brew install direnv
+$ direnv allow
+```    
 
-* System dependencies
+--database set up
+```sh
+$ rake db:create
+$ rake db:migrate
+```
+- - - or - - -
 
-* Configuration
+```sh
+$ rake db:setup
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+--To start the server (port:3000)
+```sh
+$ rails s
+```
