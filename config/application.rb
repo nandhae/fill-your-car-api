@@ -32,6 +32,7 @@ module FueloApi
         )
       end
     end
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    load_path_strategy = Rails.env.production? ? :eager_load_paths : :autoload_paths
+    config.public_send(load_path_strategy) << Rails.root.join('lib')
   end
 end
