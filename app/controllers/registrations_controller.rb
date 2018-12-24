@@ -22,6 +22,6 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def ensure_params_exist
-    return render_unauthorized errors: { bad_request: ['Incomplete credentials'] } if user_params[:email].blank? || user_params[:password].blank?
+    render_unauthorized errors: { bad_request: ['Incomplete credentials'] } if user_params[:email].blank? || user_params[:password].blank?
   end
 end

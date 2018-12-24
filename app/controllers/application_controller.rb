@@ -25,6 +25,6 @@ class ApplicationController < ActionController::API
   end
 
   def render_unauthorized(payload = { errors: { unauthorized: ['You are not authorized perform this action.'] } })
-    render json: payload.merge(response: { code: 401 })
+    render json: payload.merge(response: { code: 401 }), status: :bad_request
   end
 end
