@@ -1,26 +1,34 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
-  skip_before_action :authenticate_user_from_token!
-  before_action :ensure_params_exist
+  skip_before_action :authenticate_user!
+  # before_action :ensure_params_exist
 
-  def create
-    @user = User.where(email: user_params[:email]).first
-    return render json: { token: @auth_token = jwt_token(@user) }, status: :ok if @user&.valid_password?(user_params[:password])
-
-    invalid_login_attempt
+  # def create
+  #   @user = User.where(email: user_params[:email]).first
+  #   if @user&.valid_password?(user_params[:password])
+  #     response.headers['token'] = jwt_token(@user)
+  #     return render json: { message: 'Login successful' }, status: :ok
+  #   end
+  #   invalid_login_attempt
+  # end
+  def show
+    user_signed_in?
   end
-
-  def destroy
-  end
+  # def destroy
+  # end
 
   private
 
+  def respond_with(resource, _opts = {})
+    render json: resource, status: :ok
+  end
+
   def respond_to_on_destroy
-    head :no_content
+    head :ok
   end
 
   def invalid_login_attempt
-    render_unauthorized errors: { unauthenticated: ['Invalid credentials'] }
+    render_badrequest errors: { unauthenticated: ['Invalid credentials'] }
   end
 
   def user_params
@@ -28,6 +36,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def ensure_params_exist
-    return render_unauthorized errors: { unauthenticated: ['Incomplete credentials'] } if user_params[:email].blank? || user_params[:password].blank?
+    return render_badrequest errors: { unauthenticated: ['Incomplete credentials'] } if user_params[:email].blank? || user_params[:password].blank?
   end
 end

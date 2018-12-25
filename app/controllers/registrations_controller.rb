@@ -1,14 +1,13 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json
-  skip_before_action :authenticate_user_from_token!
+  skip_before_action :authenticate_user!
   before_action :ensure_params_exist
 
   def create
-    return user_already_exists if User.where(email: user_params[:email]).exists?
+    build_resource(sign_up_params)
 
-    @user = User.new(user_params)
-    @auth_token = jwt_token(@user) if @user.save
-    render json: { token: @auth_token }, status: :ok
+    resource.save
+    render_resource(resource)
   end
 
   private
@@ -18,10 +17,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def user_already_exists
-    render_unauthorized errors: { unauthenticated: ['User already exists'] }
+    render_badrequest errors: { unauthenticated: ['User already exists'] }
   end
 
   def ensure_params_exist
-    render_unauthorized errors: { bad_request: ['Incomplete credentials'] } if user_params[:email].blank? || user_params[:password].blank?
+    render_badrequest errors: { bad_request: ['Incomplete credentials'] } if user_params[:email].blank? || user_params[:password].blank?
   end
 end
