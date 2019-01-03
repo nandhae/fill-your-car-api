@@ -1,4 +1,11 @@
 class PasswordsController < Devise::PasswordsController
   respond_to :json
-  skip_before_action :authenticate_user!
+
+  def edit
+    super
+  end
+
+  def put
+    super
+  end
 end

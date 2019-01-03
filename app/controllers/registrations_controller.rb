@@ -1,6 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json
-  skip_before_action :authenticate_user!
   before_action :ensure_params_exist
 
   def create
