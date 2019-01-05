@@ -1,6 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   respond_to :json
-  before_action :ensure_params_exist
+
+  # before_action :ensure_params_exist
 
   def create
     build_resource(sign_up_params)
@@ -10,6 +11,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def respond_with(resource, _opts = {})
+    render json: resource
+  end
 
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation)
