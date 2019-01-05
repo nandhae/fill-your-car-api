@@ -22,6 +22,10 @@ module FueloApi
     config.load_defaults 5.2
 
     config.api_only = true
+
+    # Timezone
+    config.time_zone = 'Chennai'
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
