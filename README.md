@@ -22,7 +22,7 @@ $ rake db:migrate
 $ rake db:setup
 ```
 
---To start the server (port:3000)
+--To start the server (port:5000)
 ```sh
 $ rails s
 ```

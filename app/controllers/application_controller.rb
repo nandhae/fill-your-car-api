@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   respond_to :json
-  
+
   protected
 
   def render_unauthorized(payload = { errors: { unauthorized: ['You are not authorized perform this action.'] } })

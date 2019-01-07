@@ -13,4 +13,5 @@ Rails.application.routes.draw do
                  registrations: 'registrations',
                  passwords: 'passwords'
                }
+    resources :people
 end
