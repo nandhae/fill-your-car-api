@@ -1,17 +1,6 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
 
-  # before_action :ensure_params_exist
-  #
-  # def create
-  # end
-  #
-  # def show
-  # end
-  #
-  # def destroy
-  # end
-
   private
 
   def respond_with(resource, _opts = {})

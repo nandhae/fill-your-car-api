@@ -10,6 +10,7 @@ class PeopleController < ApplicationController
   def show
     return render_badrequest if Person.where(id: params[:id]).empty?
 
-    render json: Person.where(id: params[:id]).first, status: :ok
+    render 'people/person.json.jbuilder', locals: { person: Person.where(id: params[:id]).first }, status: :ok
+
   end
 end

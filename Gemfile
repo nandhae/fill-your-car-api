@@ -7,15 +7,16 @@ ruby '2.5.3'
 gem 'rails', '~> 5.2.2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-gem 'jbuilder', '~> 2.5'
 gem 'json-schema', '~> 2.8.0'
-gem 'jwt'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rubocop'
 gem 'rubocop-rspec'
+gem 'jwt'
 gem 'devise'
 gem 'devise-jwt', '~> 0.5.8'
 gem 'pg', '~> 0.18.4'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'jbuilder', '~> 2.5'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -28,11 +29,7 @@ gem 'pg', '~> 0.18.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
